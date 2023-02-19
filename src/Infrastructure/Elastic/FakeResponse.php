@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JeroenG\Explorer\Infrastructure\Elastic;
 
-use Elasticsearch\Client;
-use GuzzleHttp\Ring\Future\FutureArrayInterface;
+use Elastic\Elasticsearch\Client;
+use GuzzleHttp\Psr7\Response;
 use JeroenG\Explorer\Application\Results;
 use JeroenG\Explorer\Application\SearchCommandInterface;
 use Webmozart\Assert\Assert;
@@ -25,6 +25,14 @@ class FakeResponse
        $this->statusCode = $statusCode;
        $this->body = $body;
    }
+
+    public function toResponse(): Response
+    {
+        return (new Response($this->statusCode, [
+            'X-Elastic-Product' => 'Elasticsearch',
+            'Content-Type' => 'application/json',
+        ], $this->body));
+    }
 
     public function toArray(): array
     {

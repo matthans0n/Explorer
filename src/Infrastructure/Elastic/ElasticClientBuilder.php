@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JeroenG\Explorer\Infrastructure\Elastic;
 
-use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Contracts\Config\Repository;
 
 final class ElasticClientBuilder
@@ -16,13 +16,13 @@ final class ElasticClientBuilder
     {
         $builder = ClientBuilder::create();
 
-        $hostConnectionProperties = array_filter(
-            $config->get('explorer.connection'),
-            static fn ($key) => in_array($key, self::HOST_KEYS, true),
-            ARRAY_FILTER_USE_KEY
-        );
+//        $hostConnectionProperties = array_filter(
+//            $config->get('explorer.connection'),
+//            static fn ($key) => in_array($key, self::HOST_KEYS, true),
+//            ARRAY_FILTER_USE_KEY
+//        );
 
-        $builder->setHosts([$hostConnectionProperties]);
+        $builder->setHosts(config('explorer.connection.hosts'));
 
         if ($config->has('explorer.additionalConnections')) {
             $builder->setHosts([$config->get('explorer.connection'), ...$config->get('explorer.additionalConnections')]);

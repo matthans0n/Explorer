@@ -198,7 +198,9 @@ class ElasticEngine extends Engine
      */
     public function flush($model): void
     {
-        $this->indexAdapter->flush($model->searchableAs());
+        $this->deleteIndex($model->searchableAs());
+        $this->createIndex($model->searchableAs());
+//        $this->indexAdapter->flush($model->searchableAs());
     }
 
     public static function debug(): Debugger

@@ -25,10 +25,10 @@ class ScoreFunction
     public function build(): array
     {
         $scoreFunction = [];
-        if (!is_null($this->filter)) {
+        if (! is_null($this->filter)) {
             $scoreFunction['filter'] = $this->filter->build();
         }
-        if (!is_null($this->weight)) {
+        if (! is_null($this->weight)) {
             $scoreFunction['weight'] = $this->weight;
         }
 

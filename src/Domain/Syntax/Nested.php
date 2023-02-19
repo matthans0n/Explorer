@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace JeroenG\Explorer\Domain\Syntax;
 
 class Nested implements SyntaxInterface

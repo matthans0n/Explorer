@@ -21,13 +21,13 @@ class TestModelWithAliased implements Explored, Aliased
 
     public function toSearchableArray(): array
     {
-        return [ 'data' => true ];
+        return ['data' => true];
     }
 
     public function mappableAs(): array
     {
         return [
-            'data' => [ 'type' => 'boolean' ]
+            'data' => ['type' => 'boolean'],
         ];
     }
 }

@@ -38,11 +38,11 @@ final class IndexAliasConfiguration implements IndexAliasConfigurationInterface
 
     public function getHistoryAliasName(): string
     {
-        return $this->name . '-history';
+        return $this->name.'-history';
     }
 
     public function getWriteAliasName(): string
     {
-        return $this->name . '-write';
+        return $this->name.'-write';
     }
 }

@@ -172,7 +172,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
         $builder->model = Mockery::mock(Model::class);
 
         $builder->index = self::TEST_INDEX;
-        $builder->orders = [[ 'column' => 'id', 'direction' => 'asc']];
+        $builder->orders = [['column' => 'id', 'direction' => 'asc']];
 
         $subject = ScoutSearchCommandBuilder::wrap($builder);
 
@@ -205,7 +205,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
 
         $expected = [
             'size' => 5,
-            'query' => ['bool' => ['must' => [], 'should' => [], 'filter' => []]]
+            'query' => ['bool' => ['must' => [], 'should' => [], 'filter' => []]],
         ];
 
         self::assertEquals($expected, $query);
@@ -287,7 +287,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
             'from' => 10,
             'size' => 30,
             'sort' => [$sort->build()],
-            'fields' => $fields
+            'fields' => $fields,
         ];
 
         self::assertEquals($expectedQuery, $query);
@@ -302,7 +302,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
         $searchQuery = 'myQuery';
         $whereField = 'whereField';
         $whereValue = 'whereValue';
-        $returnQuery = [ 'return' => 'query' ];
+        $returnQuery = ['return' => 'query'];
 
         $subject->setDefaultSearchFields($defaultFields);
         $subject->setQuery($searchQuery);
@@ -310,7 +310,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
         $subject->setFilter([$term]);
         $subject->setShould([$term]);
         $subject->setBoolQuery($boolQuery);
-        $subject->setWhere([ $whereField => $whereValue ]);
+        $subject->setWhere([$whereField => $whereValue]);
         $subject->setMinimumShouldMatch('50%');
 
         $boolQuery->expects('clone')->andReturn($boolQuery);
@@ -334,7 +334,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
 
         $query = $subject->buildQuery();
 
-        self::assertSame([ 'query' => $returnQuery ], $query);
+        self::assertSame(['query' => $returnQuery], $query);
     }
 
     public function test_it_builds_query_with_aggregations(): void
@@ -348,7 +348,7 @@ class ScoutSearchCommandBuilderTest extends TestCase
 
         $expectedQuery = [
             'query' => ['bool' => ['must' => [], 'should' => [], 'filter' => []]],
-            'aggs' => [':name:' => ['terms' => ['field' => ':field:', 'size' => 10]]]
+            'aggs' => [':name:' => ['terms' => ['field' => ':field:', 'size' => 10]]],
         ];
 
         self::assertEquals($expectedQuery, $query);

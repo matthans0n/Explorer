@@ -28,6 +28,7 @@ class Finder
         ];
 
         $rawResults = $this->client->search($query);
+
         return new Results($rawResults->asArray());
     }
 }

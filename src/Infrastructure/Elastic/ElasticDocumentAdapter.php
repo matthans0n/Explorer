@@ -39,7 +39,7 @@ final class ElasticDocumentAdapter implements DocumentAdapterInterface
     {
         $this->client->delete([
             'index' => $index,
-            'id' => $id
+            'id' => $id,
         ]);
     }
 

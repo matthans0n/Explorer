@@ -41,13 +41,13 @@ class AnalysisTest extends TestCase
                     'synonym' => [
                         'tokenizer' => 'standard',
                         'filter' => [],
-                    ]
+                    ],
                 ],
                 'filter' => [
                     'synonym' => [
                         'type' => 'synonym',
                         'synonyms' => [],
-                    ]
+                    ],
                 ],
             ],
         ];

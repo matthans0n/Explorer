@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace JeroenG\Explorer\Infrastructure\Elastic;
 
-use Elastic\Elasticsearch\Client;
 use GuzzleHttp\Psr7\Response;
-use JeroenG\Explorer\Application\Results;
-use JeroenG\Explorer\Application\SearchCommandInterface;
 use Webmozart\Assert\Assert;
 
 class FakeResponse
@@ -17,21 +14,21 @@ class FakeResponse
     private $body;
 
     /**
-     * @param resource $body
+     * @param  resource  $body
      */
     public function __construct(int $statusCode, $body)
-   {
-       Assert::resource($body);
-       $this->statusCode = $statusCode;
-       $this->body = $body;
-   }
+    {
+        Assert::resource($body);
+        $this->statusCode = $statusCode;
+        $this->body = $body;
+    }
 
     public function toResponse(): Response
     {
-        return (new Response($this->statusCode, [
+        return new Response($this->statusCode, [
             'X-Elastic-Product' => 'Elasticsearch',
             'Content-Type' => 'application/json',
-        ], $this->body));
+        ], $this->body);
     }
 
     public function toArray(): array
@@ -40,7 +37,7 @@ class FakeResponse
             'status' => $this->statusCode,
             'transfer_stats' => ['total_time' => 100],
             'body' => $this->body,
-            'effective_url' => 'localhost'
+            'effective_url' => 'localhost',
         ];
     }
 }

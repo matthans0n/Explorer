@@ -9,11 +9,12 @@ class DisjunctionMax implements SyntaxInterface
     /** @var SyntaxInterface[] */
     public array $queries = [];
 
-    /** @param SyntaxInterface[] $queries */
+    /** @param  SyntaxInterface[]  $queries */
     public static function queries(array $queries): self
     {
         $dismax = new self();
         $dismax->queries = $queries;
+
         return $dismax;
     }
 

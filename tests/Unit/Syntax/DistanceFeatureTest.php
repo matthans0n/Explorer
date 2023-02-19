@@ -29,7 +29,7 @@ class DistanceFeatureTest extends TestCase
                     'lon' => 'value2',
                 ],
                 'boost' => 1.0,
-            ]
+            ],
         ];
 
         $query = $subject->build();

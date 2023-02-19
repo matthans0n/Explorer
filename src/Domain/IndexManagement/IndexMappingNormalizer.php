@@ -26,10 +26,10 @@ final class IndexMappingNormalizer
         }
 
         if (is_array($type)) {
-            if (!isset($type['type'])) {
+            if (! isset($type['type'])) {
                 $type = [
                     'type' => 'nested',
-                    'properties' => $type
+                    'properties' => $type,
                 ];
             }
 
@@ -43,6 +43,6 @@ final class IndexMappingNormalizer
         }
 
         $dump = var_export($type, true);
-        throw new RuntimeException('Unable to determine mapping type: ' . $dump);
+        throw new RuntimeException('Unable to determine mapping type: '.$dump);
     }
 }

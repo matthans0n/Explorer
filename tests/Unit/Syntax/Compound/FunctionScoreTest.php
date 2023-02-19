@@ -19,9 +19,9 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'boost_mode' => 'multiply',
-                'score_mode' => 'multiply'
+                'score_mode' => 'multiply',
             ],
         ];
 
@@ -37,7 +37,7 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'boost_mode' => 'multiply',
                 'score_mode' => 'multiply',
                 'min_score' => 42,
@@ -56,7 +56,7 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'boost_mode' => 'multiply',
                 'score_mode' => 'multiply',
                 'max_boost' => 42,
@@ -75,7 +75,7 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'boost_mode' => 'multiply',
                 'score_mode' => 'multiply',
                 'weight' => 42,
@@ -98,20 +98,20 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'functions' => [
                     [
                         'script_score' => [
                             'script' => [
-                                'params' => ['test' => 5 ],
-                                'source' => 'testSource'
-                            ]
+                                'params' => ['test' => 5],
+                                'source' => 'testSource',
+                            ],
                         ],
-                        'weight' => 42
+                        'weight' => 42,
                     ],
                 ],
                 'boost_mode' => 'multiply',
-                'score_mode' => 'multiply'
+                'score_mode' => 'multiply',
             ],
         ];
 
@@ -130,15 +130,15 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'functions' => [
                     [
-                        'filter' => ['match_all' => (object)[]],
-                        'weight' => 42
+                        'filter' => ['match_all' => (object) []],
+                        'weight' => 42,
                     ],
                 ],
                 'boost_mode' => 'multiply',
-                'score_mode' => 'multiply'
+                'score_mode' => 'multiply',
             ],
         ];
 
@@ -155,9 +155,9 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['match_all' => (object)[]],
+                'query' => ['match_all' => (object) []],
                 'boost_mode' => 'max',
-                'score_mode' => 'min'
+                'score_mode' => 'min',
             ],
         ];
 
@@ -174,9 +174,9 @@ class FunctionScoreTest extends TestCase
 
         $expected = [
             'function_score' => [
-                'query' => ['term' => ['test' => [ 'value' => 'yes', 'boost' => 1.0]]],
+                'query' => ['term' => ['test' => ['value' => 'yes', 'boost' => 1.0]]],
                 'boost_mode' => 'multiply',
-                'score_mode' => 'multiply'
+                'score_mode' => 'multiply',
             ],
         ];
 

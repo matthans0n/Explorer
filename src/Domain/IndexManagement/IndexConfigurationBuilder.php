@@ -8,7 +8,7 @@ use JeroenG\Explorer\Application\Explored;
 
 final class IndexConfigurationBuilder
 {
-    /** @var class-string|null  */
+    /** @var class-string|null */
     private ?string $model = null;
 
     private array $settings = [];
@@ -37,7 +37,7 @@ final class IndexConfigurationBuilder
     }
 
     /**
-     * @param null|class-string $model
+     * @param  null|class-string  $model
      */
     public function withModel(?string $model): self
     {
@@ -77,7 +77,7 @@ final class IndexConfigurationBuilder
 
     public function buildIndexConfiguration(): IndexConfigurationInterface
     {
-        if (!is_null($this->aliasedIndexConfiguration)) {
+        if (! is_null($this->aliasedIndexConfiguration)) {
             return AliasedIndexConfiguration::create(
                 name: $this->name,
                 aliasConfiguration: $this->aliasedIndexConfiguration,

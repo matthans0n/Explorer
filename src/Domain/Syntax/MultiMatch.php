@@ -24,20 +24,20 @@ class MultiMatch implements SyntaxInterface
 
     public function build(): array
     {
-        $query = ['query' => $this->value ];
+        $query = ['query' => $this->value];
 
         if ($this->fields !== null) {
             $query['fields'] = $this->fields;
         }
 
-        if (!empty($this->fuzziness)) {
+        if (! empty($this->fuzziness)) {
             $query['fuzziness'] = $this->fuzziness;
         }
 
-        if (!empty($this->prefix_length)) {
+        if (! empty($this->prefix_length)) {
             $query['prefix_length'] = $this->prefix_length;
         }
 
-        return [ 'multi_match' => $query ];
+        return ['multi_match' => $query];
     }
 }

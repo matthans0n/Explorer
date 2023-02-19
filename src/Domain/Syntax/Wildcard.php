@@ -39,6 +39,6 @@ class Wildcard implements SyntaxInterface
             'rewrite' => $this->rewrite,
         ];
 
-        return ['wildcard' => [ $this->field => $query ] ];
+        return ['wildcard' => [$this->field => $query]];
     }
 }

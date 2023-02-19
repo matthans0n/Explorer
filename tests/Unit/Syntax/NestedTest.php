@@ -22,10 +22,10 @@ class NestedTest extends TestCase
                         'test.id' => [
                             'value' => '5',
                             'boost' => 5.5,
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         $query = $subject->build();

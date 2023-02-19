@@ -29,7 +29,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
 
     private ?string $minimumShouldMatch = null;
 
-    /** @var Sort[]  */
+    /** @var Sort[] */
     private array $sort = [];
 
     private array $aggregations = [];
@@ -106,6 +106,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
     public function getIndex(): string
     {
         Assert::notNull($this->index);
+
         return $this->index;
     }
 
@@ -116,7 +117,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
 
     public function hasSort(): bool
     {
-        return !empty($this->sort);
+        return ! empty($this->sort);
     }
 
     public function getSort(): array
@@ -211,7 +212,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
 
     public function hasFields(): bool
     {
-        return !empty($this->fields);
+        return ! empty($this->fields);
     }
 
     public function setAggregations(array $aggregations): void
@@ -242,7 +243,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
         $compound->addMany(QueryType::SHOULD, $this->getShould());
         $compound->addMany(QueryType::FILTER, $this->getFilter());
 
-        if (!empty($this->query)) {
+        if (! empty($this->query)) {
             $compound->add('must', new MultiMatch($this->query, $this->getDefaultSearchFields()));
         }
 

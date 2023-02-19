@@ -57,7 +57,7 @@ final class IndexConfigurationBuilderTest extends TestCase
 
     public function test_it_sets_properties(): void
     {
-        $properties = [ 'test'=> [ 'type' => 'text' ] ];
+        $properties = ['test' => ['type' => 'text']];
         $builder = IndexConfigurationBuilder::named('index')->withProperties($properties);
         $config = $builder->buildIndexConfiguration();
 
@@ -66,8 +66,8 @@ final class IndexConfigurationBuilderTest extends TestCase
 
     public function test_it_normalizes_properties(): void
     {
-        $normalizedProperties = [ 'test' => [ 'type' => 'text' ] ];
-        $properties = [ 'test' => 'text' ];
+        $normalizedProperties = ['test' => ['type' => 'text']];
+        $properties = ['test' => 'text'];
 
         $builder = IndexConfigurationBuilder::named('index')->withProperties($properties);
         $config = $builder->buildIndexConfiguration();
@@ -77,7 +77,7 @@ final class IndexConfigurationBuilderTest extends TestCase
 
     public function test_it_sets_settings(): void
     {
-        $settings = [ 'setting' => true ];
+        $settings = ['setting' => true];
 
         $builder = IndexConfigurationBuilder::named('index')->withSettings($settings);
         $config = $builder->buildIndexConfiguration();

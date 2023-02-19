@@ -12,6 +12,7 @@ class Invert implements SyntaxInterface
     {
         $query = new self();
         $query->query = $syntax;
+
         return $query;
     }
 

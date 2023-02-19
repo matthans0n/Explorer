@@ -28,7 +28,7 @@ class QueryTest extends TestCase
     public function test_it_builds_query(): void
     {
         $result = $this->query->build();
-        self::assertEquals([ 'query' => $this->syntax->build() ], $result);
+        self::assertEquals(['query' => $this->syntax->build()], $result);
         self::assertFalse($this->query->hasAggregations());
     }
 
@@ -93,11 +93,11 @@ class QueryTest extends TestCase
         $result = $this->query->build();
 
         self::assertEquals([
-            'query' => ['match_all' => (object)[]],
+            'query' => ['match_all' => (object) []],
             'rescore' => [
                 $rescoring->build(),
-                $rescoring->build()
-            ]
+                $rescoring->build(),
+            ],
         ], $result);
     }
 
@@ -108,15 +108,15 @@ class QueryTest extends TestCase
         self::assertTrue($this->query->hasAggregations());
 
         self::assertEquals([
-            'query' => ['match_all' => (object)[]],
+            'query' => ['match_all' => (object) []],
             'aggs' => [
                 ':name:' => [
                     'terms' => [
                         'field' => ':field:',
-                        'size' => 10
-                    ]
-                ]
-            ]
+                        'size' => 10,
+                    ],
+                ],
+            ],
         ], $this->query->build());
     }
 }

@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 class BoolQueryTest extends TestCase
 {
     use SyntaxProvider;
-
     use QueryTypeProvider;
 
     public function test_it_can_build_an_empty_query(): void
@@ -37,7 +36,6 @@ class BoolQueryTest extends TestCase
 
     /**
      * @dataProvider queryTypeProvider
-     * @param string $type
      */
     public function test_it_accepts_different_types_of_queries_by_method(string $type): void
     {
@@ -46,7 +44,7 @@ class BoolQueryTest extends TestCase
 
         $subject->$type($term);
 
-        $expected = [['term' => ['published' => [ 'value' => true, 'boost' => 1.0]]]];
+        $expected = [['term' => ['published' => ['value' => true, 'boost' => 1.0]]]];
 
         $query = $subject->build();
 
@@ -55,7 +53,6 @@ class BoolQueryTest extends TestCase
 
     /**
      * @dataProvider queryTypeProvider
-     * @param string $type
      */
     public function test_it_accepts_different_types_of_queries_by_add(string $type): void
     {
@@ -64,7 +61,7 @@ class BoolQueryTest extends TestCase
 
         $subject->add($type, $term);
 
-        $expected = [['term' => ['published' => [ 'value' => true, 'boost' => 1.0]]]];
+        $expected = [['term' => ['published' => ['value' => true, 'boost' => 1.0]]]];
 
         $query = $subject->build();
 
@@ -73,7 +70,6 @@ class BoolQueryTest extends TestCase
 
     /**
      * @dataProvider syntaxProvider
-     * @param string $className
      */
     public function test_it_accepts_different_types_of_syntax(string $className): void
     {
@@ -108,11 +104,11 @@ class BoolQueryTest extends TestCase
             'bool' => [
                 'must' => [],
                 'should' => [
-                    ['match' => ['title' => [ 'query' => 'Lorem Ipsum', 'fuzziness' => 'auto' ]]]
+                    ['match' => ['title' => ['query' => 'Lorem Ipsum', 'fuzziness' => 'auto']]],
                 ],
                 'filter' => [
-                    ['term' => ['published' => [ 'value' => true, 'boost' => 1.0]]],
-                    ['term' => ['enabled' => [ 'value' => true, 'boost' => 1.0]]]
+                    ['term' => ['published' => ['value' => true, 'boost' => 1.0]]],
+                    ['term' => ['enabled' => ['value' => true, 'boost' => 1.0]]],
                 ],
             ],
         ];
@@ -142,9 +138,9 @@ class BoolQueryTest extends TestCase
     public function test_it_clones(): void
     {
         $subject = new BoolQuery();
-        $subject->must(new Term("a", "value_a"));
-        $subject->should(new Term("b", "value_b"));
-        $subject->filter(new Term("c", "value_c"));
+        $subject->must(new Term('a', 'value_a'));
+        $subject->should(new Term('b', 'value_b'));
+        $subject->filter(new Term('c', 'value_c'));
 
         $clone = $subject->clone();
 
@@ -152,15 +148,15 @@ class BoolQueryTest extends TestCase
         self::assertNotSame($subject, $clone);
 
         $secondClone = $subject->clone();
-        $secondClone->must(new Term("d", "value_d"));
+        $secondClone->must(new Term('d', 'value_d'));
         self::assertNotEquals($secondClone->build(), $clone->build());
 
         $secondClone = $subject->clone();
-        $secondClone->should(new Term("e", "value_e"));
+        $secondClone->should(new Term('e', 'value_e'));
         self::assertNotEquals($secondClone->build(), $clone->build());
 
         $secondClone = $subject->clone();
-        $secondClone->filter(new Term("f", "value_f"));
+        $secondClone->filter(new Term('f', 'value_f'));
         self::assertNotEquals($secondClone->build(), $clone->build());
     }
 }

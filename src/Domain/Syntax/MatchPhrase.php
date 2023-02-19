@@ -18,8 +18,8 @@ class MatchPhrase implements SyntaxInterface
 
     public function build(): array
     {
-        $query = [ 'query' => $this->value ];
+        $query = ['query' => $this->value];
 
-        return ['match_phrase' => [ $this->field => $query ] ];
+        return ['match_phrase' => [$this->field => $query]];
     }
 }

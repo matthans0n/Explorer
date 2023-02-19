@@ -59,24 +59,24 @@ class FunctionScore implements SyntaxInterface
     {
         $functions = array_map(fn ($function) => $function->build(), $this->functions);
 
-        $query = [ 'query' => $this->query->build() ];
-        if (!empty($functions)) {
+        $query = ['query' => $this->query->build()];
+        if (! empty($functions)) {
             $query['functions'] = $functions;
         }
-        if (!is_null($this->minScore)) {
+        if (! is_null($this->minScore)) {
             $query['min_score'] = $this->minScore;
         }
-        if (!is_null($this->maxBoost)) {
+        if (! is_null($this->maxBoost)) {
             $query['max_boost'] = $this->maxBoost;
         }
-        if (!is_null($this->weight)) {
+        if (! is_null($this->weight)) {
             $query['weight'] = $this->weight;
         }
         $query['boost_mode'] = $this->boostMode;
         $query['score_mode'] = $this->scoreMode;
 
         return [
-            'function_score' => $query
+            'function_score' => $query,
         ];
     }
 

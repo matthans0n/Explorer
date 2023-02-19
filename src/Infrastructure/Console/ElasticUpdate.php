@@ -42,11 +42,12 @@ final class ElasticUpdate extends Command
             $indexAdapter->createNewWriteIndex($indexConfiguration);
         }
 
-        if (!is_null($indexConfiguration->getModel())) {
-            $output = Artisan::call('scout:import', ["model" => $indexConfiguration->getModel()], $this->output);
+        if (! is_null($indexConfiguration->getModel())) {
+            $output = Artisan::call('scout:import', ['model' => $indexConfiguration->getModel()], $this->output);
 
             if ($output !== 0) {
-                $this->error(sprintf("Import of model %s failed", $indexConfiguration->getModel()));
+                $this->error(sprintf('Import of model %s failed', $indexConfiguration->getModel()));
+
                 return;
             }
         }

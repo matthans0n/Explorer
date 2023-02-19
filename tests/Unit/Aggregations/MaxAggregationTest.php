@@ -15,7 +15,7 @@ class MaxAggregationTest extends TestCase
         self::assertEquals([
             'max' => [
                 'field' => ':field:',
-            ]
+            ],
         ], $aggregation->build());
     }
 }

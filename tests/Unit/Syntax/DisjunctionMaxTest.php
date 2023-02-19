@@ -14,7 +14,7 @@ class DisjunctionMaxTest extends TestCase
     {
         $dismax = DisjunctionMax::queries([]);
 
-        self::assertEquals(['dis_max' => [ 'queries' => [] ]], $dismax->build());
+        self::assertEquals(['dis_max' => ['queries' => []]], $dismax->build());
     }
 
     public function test_it_builds_disjunction_max(): void
@@ -24,9 +24,9 @@ class DisjunctionMaxTest extends TestCase
             new MatchAll(),
         ]);
 
-        self::assertEquals(['dis_max' => [ 'queries' => [
-            [ 'match_all' => (object)[]],
-            [ 'match_all' => (object)[]]
-        ] ]], $dismax->build());
+        self::assertEquals(['dis_max' => ['queries' => [
+            ['match_all' => (object) []],
+            ['match_all' => (object) []],
+        ]]], $dismax->build());
     }
 }

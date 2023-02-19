@@ -14,7 +14,7 @@ class Query implements SyntaxInterface
 
     private ?int $limit = null;
 
-    /** @var Rescoring[]  */
+    /** @var Rescoring[] */
     private array $rescoring = [];
 
     private array $fields = [];
@@ -31,13 +31,14 @@ class Query implements SyntaxInterface
     {
         $query = new self();
         $query->query = $syntax;
+
         return $query;
     }
 
     public function build(): array
     {
         $query = [
-            'query' => $this->query->build()
+            'query' => $this->query->build(),
         ];
 
         if ($this->hasPagination()) {
@@ -107,27 +108,27 @@ class Query implements SyntaxInterface
 
     public function hasAggregations(): bool
     {
-        return !empty($this->aggregations);
+        return ! empty($this->aggregations);
     }
 
     private function hasPagination(): bool
     {
-        return !is_null($this->offset);
+        return ! is_null($this->offset);
     }
 
     private function hasSize(): bool
     {
-        return !is_null($this->limit);
+        return ! is_null($this->limit);
     }
 
     private function hasSort(): bool
     {
-        return !empty($this->sort);
+        return ! empty($this->sort);
     }
 
     private function hasFields(): bool
     {
-        return !empty($this->fields);
+        return ! empty($this->fields);
     }
 
     private function buildSort(): array
@@ -137,7 +138,7 @@ class Query implements SyntaxInterface
 
     private function hasRescoring(): bool
     {
-        return !empty($this->rescoring);
+        return ! empty($this->rescoring);
     }
 
     private function buildRescoring(): array

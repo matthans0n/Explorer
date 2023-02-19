@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JeroenG\Explorer;
 
-use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use JeroenG\Explorer\Application\DocumentAdapterInterface;
@@ -14,9 +13,8 @@ use JeroenG\Explorer\Domain\Aggregations\AggregationSyntaxInterface;
 use JeroenG\Explorer\Domain\IndexManagement\IndexConfigurationRepositoryInterface;
 use JeroenG\Explorer\Infrastructure\Console\ElasticSearch;
 use JeroenG\Explorer\Infrastructure\Console\ElasticUpdate;
-use JeroenG\Explorer\Infrastructure\Elastic\ElasticAdapter;
-use JeroenG\Explorer\Infrastructure\Elastic\ElasticClientFactory;
 use JeroenG\Explorer\Infrastructure\Elastic\ElasticClientBuilder;
+use JeroenG\Explorer\Infrastructure\Elastic\ElasticClientFactory;
 use JeroenG\Explorer\Infrastructure\Elastic\ElasticDocumentAdapter;
 use JeroenG\Explorer\Infrastructure\Elastic\ElasticIndexAdapter;
 use JeroenG\Explorer\Infrastructure\IndexManagement\ElasticIndexChangedChecker;
@@ -58,38 +56,44 @@ class ExplorerServiceProvider extends ServiceProvider
 
         Builder::macro('must', function ($must) {
             $this->must[] = $must;
+
             return $this;
         });
 
         Builder::macro('should', function ($should) {
             $this->should[] = $should;
+
             return $this;
         });
 
         Builder::macro('filter', function ($filter) {
             $this->filter[] = $filter;
+
             return $this;
         });
 
         Builder::macro('field', function (string $field) {
             $this->fields[] = $field;
+
             return $this;
         });
 
         Builder::macro('newCompound', function ($compound) {
             $this->compound = $compound;
+
             return $this;
         });
 
         Builder::macro('aggregation', function (string $name, AggregationSyntaxInterface $aggregation) {
             $this->aggregations[$name] = $aggregation;
+
             return $this;
         });
     }
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/explorer.php', 'explorer');
+        $this->mergeConfigFrom(__DIR__.'/../config/explorer.php', 'explorer');
     }
 
     public function provides(): array
@@ -100,12 +104,12 @@ class ExplorerServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/explorer.php' => config_path('explorer.php'),
+            __DIR__.'/../config/explorer.php' => config_path('explorer.php'),
         ], 'explorer.config');
 
         $this->commands([
-             ElasticSearch::class,
-             ElasticUpdate::class,
-         ]);
+            ElasticSearch::class,
+            ElasticUpdate::class,
+        ]);
     }
 }

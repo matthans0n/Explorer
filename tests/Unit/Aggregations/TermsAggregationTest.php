@@ -15,8 +15,8 @@ class TermsAggregationTest extends TestCase
         self::assertEquals([
             'terms' => [
                 'field' => ':field:',
-                'size' => 10
-            ]
+                'size' => 10,
+            ],
         ], $aggr->build());
     }
 
@@ -26,8 +26,8 @@ class TermsAggregationTest extends TestCase
         self::assertEquals([
             'terms' => [
                 'field' => ':field:',
-                'size' => 100
-            ]
+                'size' => 100,
+            ],
         ], $aggr->build());
     }
 }

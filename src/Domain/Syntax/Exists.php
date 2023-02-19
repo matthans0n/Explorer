@@ -12,13 +12,14 @@ class Exists implements SyntaxInterface
     {
         $exists = new self();
         $exists->field = $field;
+
         return $exists;
     }
 
     public function build(): array
     {
         return [
-            'exists' => [ 'field' => $this->field ],
+            'exists' => ['field' => $this->field],
         ];
     }
 }

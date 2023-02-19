@@ -22,6 +22,7 @@ class SearchCommand implements SearchCommandInterface
     public function getIndex(): string
     {
         Assert::notNull($this->index);
+
         return $this->index;
     }
 

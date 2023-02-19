@@ -12,6 +12,6 @@ class MatchAllTest extends TestCase
     public function test_it_builds_match_all(): void
     {
         $matchAll = new MatchAll();
-        self::assertEquals(['match_all' => (object)[]], $matchAll->build());
+        self::assertEquals(['match_all' => (object) []], $matchAll->build());
     }
 }

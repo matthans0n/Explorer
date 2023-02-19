@@ -26,7 +26,7 @@ final class NestedAggregation implements AggregationSyntaxInterface
             'nested' => [
                 'path' => $this->field,
             ],
-            'aggs' => $this->buildNestedAggregations()
+            'aggs' => $this->buildNestedAggregations(),
         ];
     }
 
@@ -36,6 +36,7 @@ final class NestedAggregation implements AggregationSyntaxInterface
         foreach ($this->aggregations as $name => $aggregation) {
             $data[$name] = $aggregation->build();
         }
+
         return $data;
     }
 }

@@ -21,18 +21,18 @@ class TestModelWithSettings implements Explored, IndexSettings
 
     public function toSearchableArray(): array
     {
-        return [ 'data' => true ];
+        return ['data' => true];
     }
 
     public function mappableAs(): array
     {
         return [
-            'data' => [ 'type' => 'boolean' ]
+            'data' => ['type' => 'boolean'],
         ];
     }
 
     public function indexSettings(): array
     {
-        return [ 'test' => 'yes' ];
+        return ['test' => 'yes'];
     }
 }

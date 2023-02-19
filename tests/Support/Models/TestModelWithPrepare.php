@@ -21,13 +21,13 @@ class TestModelWithPrepare implements Explored, BePrepared
 
     public function toSearchableArray(): array
     {
-        return [ 'data' => true ];
+        return ['data' => true];
     }
 
     public function mappableAs(): array
     {
         return [
-            'data' => [ 'type' => 'boolean' ]
+            'data' => ['type' => 'boolean'],
         ];
     }
 
@@ -36,6 +36,7 @@ class TestModelWithPrepare implements Explored, BePrepared
         if ($searchable['data'] === true) {
             $searchable['extra'] = true;
         }
+
         return $searchable;
     }
 }

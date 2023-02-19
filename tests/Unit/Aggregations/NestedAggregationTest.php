@@ -16,7 +16,7 @@ class NestedAggregationTest extends TestCase
         $aggregation = new NestedAggregation(':field:');
         self::assertEquals([
             'nested' => [
-                'path' => ':field:'
+                'path' => ':field:',
             ],
             'aggs' => [],
         ], $aggregation->build());
@@ -29,15 +29,15 @@ class NestedAggregationTest extends TestCase
         $aggregation->add('aggr', $max);
         self::assertEquals([
             'nested' => [
-                'path' => ':field:'
+                'path' => ':field:',
             ],
             'aggs' => [
                 'aggr' => [
                     'max' => [
-                        'field' => ':field:'
-                    ]
-                ]
-            ]
+                        'field' => ':field:',
+                    ],
+                ],
+            ],
         ], $aggregation->build());
     }
 
@@ -52,21 +52,21 @@ class NestedAggregationTest extends TestCase
 
         self::assertEquals([
             'nested' => [
-                'path' => ':field:'
+                'path' => ':field:',
             ],
             'aggs' => [
                 'max-1' => [
                     'max' => [
-                        'field' => ':field:'
-                    ]
+                        'field' => ':field:',
+                    ],
                 ],
                 'terms-2' => [
                     'terms' => [
                         'field' => ':field-two:',
-                         'size' => 42,
-                    ]
-                ]
-            ]
+                        'size' => 42,
+                    ],
+                ],
+            ],
         ], $aggregation->build());
     }
 }

@@ -23,7 +23,7 @@ class Results implements Countable
     /** @return AggregationResult[] */
     public function aggregations(): array
     {
-        if (!isset($this->rawResults['aggregations'])) {
+        if (! isset($this->rawResults['aggregations'])) {
             return [];
         }
 

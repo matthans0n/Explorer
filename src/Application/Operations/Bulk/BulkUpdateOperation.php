@@ -44,6 +44,7 @@ final class BulkUpdateOperation implements BulkOperationInterface
             $payload[] = self::bulkActionSettings($model);
             $payload[] = self::modelToData($model);
         }
+
         return $payload;
     }
 
@@ -53,7 +54,7 @@ final class BulkUpdateOperation implements BulkOperationInterface
             'index' => [
                 '_index' => self::$indexName,
                 '_id' => $model->getScoutKey(),
-            ]
+            ],
         ];
     }
 

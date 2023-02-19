@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace JeroenG\Explorer\Tests\Unit\IndexManagement;
 
 use JeroenG\Explorer\Domain\IndexManagement\AliasedIndexConfiguration;
-use JeroenG\Explorer\Domain\IndexManagement\IndexAliasConfiguration;
 use JeroenG\Explorer\Domain\IndexManagement\DirectIndexConfiguration;
+use JeroenG\Explorer\Domain\IndexManagement\IndexAliasConfiguration;
 use JeroenG\Explorer\Domain\IndexManagement\IndexConfigurationNotFoundException;
 use JeroenG\Explorer\Infrastructure\IndexManagement\ElasticIndexConfigurationRepository;
 use JeroenG\Explorer\Tests\Support\Models\TestModelWithAliased;
@@ -21,7 +21,7 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
         $indices = [
             'a' => [
                 'aliased' => true,
-                'settings' => [ 'test' => true ],
+                'settings' => ['test' => true],
                 'properties' => [
                     'fld' => [
                         'type' => 'text',
@@ -33,7 +33,7 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
 
         $repository = new ElasticIndexConfigurationRepository($indices);
 
-        /** @var DirectIndexConfiguration $config*/
+        /** @var DirectIndexConfiguration $config */
         $config = iterator_to_array($repository->getConfigurations())[0] ?? null;
 
         self::assertNotNull($config);
@@ -46,7 +46,7 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
     public function test_it_normalizes_the_configuration(): void
     {
         $indices = [
-             'a' => [
+            'a' => [
                 'properties' => [
                     'other' => 'integer',
                 ],
@@ -55,24 +55,24 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
 
         $repository = new ElasticIndexConfigurationRepository($indices);
 
-        /** @var DirectIndexConfiguration $config*/
+        /** @var DirectIndexConfiguration $config */
         $config = iterator_to_array($repository->getConfigurations())[0] ?? null;
 
         self::assertNotNull($config);
         self::assertInstanceOf(DirectIndexConfiguration::class, $config);
-        self::assertEquals([ 'type' => 'integer' ], $config->getProperties()['other']);
+        self::assertEquals(['type' => 'integer'], $config->getProperties()['other']);
     }
 
     public function test_it_can_create_the_configuration_from_a_class(): void
     {
         $indices = [
-            TestModelWithSettings::class
+            TestModelWithSettings::class,
         ];
 
         $model = new TestModelWithSettings();
         $repository = new ElasticIndexConfigurationRepository($indices);
 
-        /** @var DirectIndexConfiguration $config*/
+        /** @var DirectIndexConfiguration $config */
         $config = iterator_to_array($repository->getConfigurations())[0] ?? null;
 
         self::assertNotNull($config);
@@ -88,12 +88,12 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
     public function test_it_can_create_the_configuration_from_a_class_without_settings(): void
     {
         $indices = [
-            TestModelWithoutSettings::class
+            TestModelWithoutSettings::class,
         ];
 
         $repository = new ElasticIndexConfigurationRepository($indices);
 
-        /** @var DirectIndexConfiguration $config*/
+        /** @var DirectIndexConfiguration $config */
         $config = iterator_to_array($repository->getConfigurations())[0] ?? null;
 
         self::assertNotNull($config);
@@ -104,7 +104,7 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
     public function test_it_throws_on_invalid_model(): void
     {
         $indices = [
-            self::class
+            self::class,
         ];
 
         $repository = new ElasticIndexConfigurationRepository($indices);
@@ -133,7 +133,7 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
         yield [
             [[
                 'properties' => [
-                    'fld' => 'text'
+                    'fld' => 'text',
                 ],
             ]],
             'Unable to create index for "array',
@@ -142,9 +142,9 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
             [
                 'a' => [
                     'properties' => [
-                        'fld' => 5
+                        'fld' => 5,
                     ],
-                ]
+                ],
             ],
             'Unable to determine mapping type: 5',
         ];
@@ -158,12 +158,12 @@ final class ElasticIndexConfigurationRepositoryTest extends MockeryTestCase
                 'properties' => [],
             ],
             'encyclopedia' => [
-                'settings' => [ 'test' => true ],
+                'settings' => ['test' => true],
                 'properties' => [
                     'fld' => [
                         'type' => 'text',
-                        'other' => 'This is a test'
-                    ]
+                        'other' => 'This is a test',
+                    ],
                 ],
             ],
         ];

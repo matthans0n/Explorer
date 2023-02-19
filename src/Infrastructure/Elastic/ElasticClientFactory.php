@@ -28,6 +28,7 @@ final class ElasticClientFactory
         $builder = ClientBuilder::create();
         $builder->setHosts(['testhost']);
         $builder->setHandler($handler);
+
         return new self($builder->build());
     }
 }

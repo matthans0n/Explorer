@@ -13,6 +13,6 @@ class ExistsTest extends TestCase
     {
         $exists = Exists::field(':fld:');
 
-        self::assertEquals(['exists' => [ 'field' => ':fld:' ]], $exists->build());
+        self::assertEquals(['exists' => ['field' => ':fld:']], $exists->build());
     }
 }

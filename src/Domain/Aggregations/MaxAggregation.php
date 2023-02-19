@@ -17,8 +17,8 @@ final class MaxAggregation implements AggregationSyntaxInterface
     {
         return [
             'max' => [
-                'field' => $this->field
-            ]
+                'field' => $this->field,
+            ],
         ];
     }
 }

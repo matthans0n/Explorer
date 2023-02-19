@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace JeroenG\Explorer\Domain\IndexManagement;
 
-use Webmozart\Assert\Assert;
-
 final class DirectIndexConfiguration implements IndexConfigurationInterface
 {
     private function __construct(
@@ -13,8 +11,7 @@ final class DirectIndexConfiguration implements IndexConfigurationInterface
         private array $properties,
         private array $settings,
         private ?string $model = null,
-    )
-    {
+    ) {
     }
 
     public static function create(

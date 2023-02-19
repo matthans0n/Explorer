@@ -19,7 +19,7 @@ class QueryStringTest extends TestCase
                 'query' => 'test',
                 'default_operator' => 'OR',
                 'boost' => 1.0,
-            ]
+            ],
         ];
 
         $query = $subject->build();
@@ -36,7 +36,7 @@ class QueryStringTest extends TestCase
                 'query' => 'test',
                 'default_operator' => 'AND',
                 'boost' => 1.0,
-            ]
+            ],
         ];
 
         $query = $subject->build();

@@ -14,12 +14,12 @@ final class IndexMappingNormalizerTest extends TestCase
         $mapping = [
             'fld' => [
                 'type' => 'text',
-                'other' => 'This is a test'
+                'other' => 'This is a test',
             ],
             'other' => 'integer',
             'object' => [
                 'id' => 'keyword',
-                'age' => [ 'type' => 'integer' ]
+                'age' => ['type' => 'integer'],
             ],
         ];
 
@@ -29,7 +29,7 @@ final class IndexMappingNormalizerTest extends TestCase
 
         self::assertNotNull($normalizedMapping);
         self::assertEquals($normalizedMapping['fld'], $normalizedMapping['fld']);
-        self::assertEquals([ 'type' => 'integer' ], $normalizedMapping['other']);
+        self::assertEquals(['type' => 'integer'], $normalizedMapping['other']);
 
         $expectedObject = [
             'type' => 'nested',
@@ -38,9 +38,9 @@ final class IndexMappingNormalizerTest extends TestCase
                     'type' => 'keyword',
                 ],
                 'age' => [
-                    'type' => 'integer'
-                ]
-            ]
+                    'type' => 'integer',
+                ],
+            ],
         ];
 
         self::assertEquals($expectedObject, $normalizedMapping['object']);

@@ -20,7 +20,7 @@ class RangeTest extends TestCase
                     'gte' => 18,
                     'boost' => 1.0,
                 ],
-            ]
+            ],
         ];
 
         $query = $subject->build();
@@ -38,7 +38,7 @@ class RangeTest extends TestCase
                     'gte' => 18,
                     'boost' => 5.0,
                 ],
-            ]
+            ],
         ];
 
         $query = $subject->build();
@@ -64,7 +64,7 @@ class RangeTest extends TestCase
                     'lte' => 5,
                     'boost' => 1.0,
                 ],
-            ]
+            ],
         ];
 
         $query = $subject->build();
@@ -83,7 +83,7 @@ class RangeTest extends TestCase
                     'lte' => 5.33,
                     'boost' => 1.0,
                 ],
-            ]
+            ],
         ];
 
         $query = $subject->build();
@@ -99,9 +99,9 @@ class RangeTest extends TestCase
             'range' => [
                 'rating' => [
                     'gte' => -50.4,
-                    'boost' => 1.0
+                    'boost' => 1.0,
                 ],
-            ]
+            ],
         ];
 
         $query = $subject->build();

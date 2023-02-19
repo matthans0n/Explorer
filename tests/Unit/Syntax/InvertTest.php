@@ -14,6 +14,6 @@ class InvertTest extends TestCase
     {
         $invert = Invert::query(new MatchAll());
 
-        self::assertEquals(['bool' => [ 'must_not' => [ 'match_all' => (object)[] ] ]], $invert->build());
+        self::assertEquals(['bool' => ['must_not' => ['match_all' => (object) []]]], $invert->build());
     }
 }

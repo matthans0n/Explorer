@@ -57,7 +57,7 @@ class ElasticIndexConfigurationRepository implements IndexConfigurationRepositor
     {
         $class = (new $index());
 
-        if (!$class instanceof Explored) {
+        if (! $class instanceof Explored) {
             throw new RuntimeException(sprintf('Unable to create index %s, ensure it implements Explored', $index));
         }
 

@@ -81,15 +81,15 @@ class FinderTest extends MockeryTestCase
                     'query' => [
                         'bool' => [
                             'must' => [
-                                ['match' => ['title' => [ 'query' => 'Lorem Ipsum', 'fuzziness' => 'auto']]],
+                                ['match' => ['title' => ['query' => 'Lorem Ipsum', 'fuzziness' => 'auto']]],
                                 ['multi_match' => ['query' => 'fuzzy search', 'fuzziness' => 'auto']],
-                                ['term' => ['subtitle' => [ 'value' => 'Dolor sit amet', 'boost' => 1.0]]]
+                                ['term' => ['subtitle' => ['value' => 'Dolor sit amet', 'boost' => 1.0]]],
                             ],
                             'should' => [
-                                ['match' => ['text' => [ 'query' => 'consectetur adipiscing elit', 'fuzziness' => 'auto']]],
+                                ['match' => ['text' => ['query' => 'consectetur adipiscing elit', 'fuzziness' => 'auto']]],
                             ],
                             'filter' => [
-                                ['term' => ['published' => [ 'value' => true, 'boost' => 1.0]]],
+                                ['term' => ['published' => ['value' => true, 'boost' => 1.0]]],
                             ],
                         ],
                     ],
@@ -237,7 +237,7 @@ class FinderTest extends MockeryTestCase
                     'query' => [
                         'bool' => [
                             'must' => [
-                                ['multi_match' => ['query' => 'fuzzy search', 'fields' => self::SEARCHABLE_FIELDS, 'fuzziness' => 'auto' ]],
+                                ['multi_match' => ['query' => 'fuzzy search', 'fields' => self::SEARCHABLE_FIELDS, 'fuzziness' => 'auto']],
                             ],
                             'should' => [],
                             'filter' => [],
@@ -277,7 +277,7 @@ class FinderTest extends MockeryTestCase
                             'filter' => [],
                         ],
                     ],
-                    'fields' => ['*.length', 'specific.field']
+                    'fields' => ['*.length', 'specific.field'],
                 ],
             ])
             ->andReturn([
@@ -314,7 +314,7 @@ class FinderTest extends MockeryTestCase
                     ],
                     'aggs' => [
                         'specificAggregation' => ['terms' => ['field' => 'specificField', 'size' => 10]],
-                        'anotherAggregation' => ['terms' => ['field' => 'anotherField', 'size' => 10]]
+                        'anotherAggregation' => ['terms' => ['field' => 'anotherField', 'size' => 10]],
                     ],
                 ],
             ])
@@ -326,15 +326,15 @@ class FinderTest extends MockeryTestCase
                 'aggregations' => [
                     'specificAggregation' => [
                         'buckets' => [
-                            ['key' => 'myKey', 'doc_count' => 42]
-                        ]
+                            ['key' => 'myKey', 'doc_count' => 42],
+                        ],
                     ],
                     'anotherAggregation' => [
                         'buckets' => [
-                            ['key' => 'anotherKey', 'doc_count' => 6]
-                        ]
+                            ['key' => 'anotherKey', 'doc_count' => 6],
+                        ],
                     ],
-                ]
+                ],
             ]);
 
         $query = Query::with(new BoolQuery());

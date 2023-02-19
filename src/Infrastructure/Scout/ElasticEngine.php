@@ -42,7 +42,6 @@ class ElasticEngine extends Engine
      * The index is deduced from the first model in the collection.
      *
      * @param  \Illuminate\Database\Eloquent\Collection  $models
-     * @return void
      */
     public function update($models): void
     {
@@ -64,7 +63,6 @@ class ElasticEngine extends Engine
      * Remove the given model from the index.
      *
      * @param  \Illuminate\Database\Eloquent\Collection  $models
-     * @return void
      */
     public function delete($models): void
     {
@@ -84,24 +82,20 @@ class ElasticEngine extends Engine
 
     /**
      * Perform the given search on the engine.
-     *
-     * @param Builder $builder
-     * @return Results
      */
     public function search(Builder $builder): Results
     {
         $normalizedBuilder = ScoutSearchCommandBuilder::wrap($builder);
         self::$lastQuery = $normalizedBuilder->buildQuery();
+
         return $this->documentAdapter->search($normalizedBuilder);
     }
 
     /**
      * Perform the given search on the engine.
      *
-     * @param Builder $builder
      * @param  int  $perPage
      * @param  int  $page
-     * @return Results
      */
     public function paginate(Builder $builder, $perPage, $page): Results
     {
@@ -111,6 +105,7 @@ class ElasticEngine extends Engine
         $normalizedBuilder->setOffset($offset);
         $normalizedBuilder->setLimit($perPage);
         self::$lastQuery = $normalizedBuilder->buildQuery();
+
         return $this->documentAdapter->search($normalizedBuilder);
     }
 
@@ -118,7 +113,6 @@ class ElasticEngine extends Engine
      * Pluck and return the primary keys of the given results.
      *
      * @param  mixed  $results
-     * @return Collection
      */
     public function mapIds($results): Collection
     {
@@ -130,7 +124,6 @@ class ElasticEngine extends Engine
     /**
      * Map the given results to instances of the given model.
      *
-     * @param Builder $builder
      * @param  Results  $results
      * @param  Model  $model
      * @return \Illuminate\Database\Eloquent\Collection
@@ -181,7 +174,6 @@ class ElasticEngine extends Engine
      * Get the total count from a raw result returned by the engine.
      *
      * @param  Results  $results
-     * @return int
      */
     public function getTotalCount($results): int
     {
@@ -194,7 +186,6 @@ class ElasticEngine extends Engine
      * Flush all of the model's records from the engine.
      *
      * @param  Model  $model
-     * @return void
      */
     public function flush($model): void
     {

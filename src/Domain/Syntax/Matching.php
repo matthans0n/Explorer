@@ -107,55 +107,55 @@ class Matching implements SyntaxInterface
             'query' => $this->value,
         ];
 
-        if (!empty($this->getAnalyzer())) {
+        if (! empty($this->getAnalyzer())) {
             $query['analyzer'] = $this->getAnalyzer();
         }
 
-        if (!is_null($this->getAutoGenerateSynonymsPhraseQuery())) {
+        if (! is_null($this->getAutoGenerateSynonymsPhraseQuery())) {
             $query['auto_generate_synonyms_phrase_query'] = $this->getAutoGenerateSynonymsPhraseQuery();
         }
 
-        if (!empty($this->getFuzziness())) {
+        if (! empty($this->getFuzziness())) {
             $query['fuzziness'] = $this->getFuzziness();
         }
 
-        if (!is_null($this->getMaxExpansions())) {
+        if (! is_null($this->getMaxExpansions())) {
             $query['max_expansions'] = $this->getMaxExpansions();
         }
 
-        if (!is_null($this->getPrefixLength())) {
+        if (! is_null($this->getPrefixLength())) {
             $query['prefix_length'] = $this->getPrefixLength();
         }
 
-        if (!is_null($this->getFuzzyTranspositions())) {
+        if (! is_null($this->getFuzzyTranspositions())) {
             $query['fuzzy_transpositions'] = $this->getFuzzyTranspositions();
         }
 
-        if (!empty($this->getFuzzyRewrite())) {
+        if (! empty($this->getFuzzyRewrite())) {
             $query['fuzzy_rewrite'] = $this->getFuzzyRewrite();
         }
 
-        if (!is_null($this->getLenient())) {
+        if (! is_null($this->getLenient())) {
             $query['lenient'] = $this->getLenient();
         }
 
-        if (!empty($this->getOperator())) {
+        if (! empty($this->getOperator())) {
             $query['operator'] = $this->getOperator();
         }
 
-        if (!empty($this->getMinimumShouldMatch())) {
+        if (! empty($this->getMinimumShouldMatch())) {
             $query['minimum_should_match'] = $this->getMinimumShouldMatch();
         }
 
-        if (!empty($this->getZeroTermsQuery())) {
+        if (! empty($this->getZeroTermsQuery())) {
             $query['zero_terms_query'] = $this->getZeroTermsQuery();
         }
 
-        if (!is_null($this->getBoost())) {
+        if (! is_null($this->getBoost())) {
             $query['boost'] = $this->getBoost();
         }
 
-        return ['match' => [ $this->field => $query ] ];
+        return ['match' => [$this->field => $query]];
     }
 
     private function getAnalyzer(): ?string

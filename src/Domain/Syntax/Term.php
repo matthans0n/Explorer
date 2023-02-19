@@ -7,7 +7,7 @@ namespace JeroenG\Explorer\Domain\Syntax;
 class Term implements SyntaxInterface
 {
     private string $field;
-    
+
     private mixed $value;
 
     private ?float $boost;

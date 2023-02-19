@@ -20,7 +20,7 @@ trait SyntaxProvider
         return [
             Matching::class,
             Term::class,
-            MultiMatch::class
+            MultiMatch::class,
         ];
     }
 }

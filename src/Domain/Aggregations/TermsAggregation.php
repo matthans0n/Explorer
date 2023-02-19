@@ -22,7 +22,7 @@ final class TermsAggregation implements AggregationSyntaxInterface
             'terms' => [
                 'field' => $this->field,
                 'size' => $this->size,
-            ]
+            ],
         ];
     }
 }

@@ -8,6 +8,6 @@ class MatchAll implements SyntaxInterface
 {
     public function build(): array
     {
-        return ['match_all' => (object)[] ];
+        return ['match_all' => (object) []];
     }
 }

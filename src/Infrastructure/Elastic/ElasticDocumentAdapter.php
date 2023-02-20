@@ -37,10 +37,14 @@ final class ElasticDocumentAdapter implements DocumentAdapterInterface
 
     public function delete(string $index, $id): void
     {
-        $this->client->delete([
-            'index' => $index,
-            'id' => $id,
-        ]);
+        try {
+            $this->client->delete([
+                'index' => $index,
+                'id' => $id,
+            ]);
+        } catch (\Exception $e) {
+            // Ignore
+        }
     }
 
     public function search(SearchCommandInterface $command): Results

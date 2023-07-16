@@ -60,6 +60,12 @@ class ExplorerServiceProvider extends ServiceProvider
             return $this;
         });
 
+        Builder::macro('postFilter', function ($filter) {
+            $this->postFilters[] = $filter;
+
+            return $this;
+        });
+
         Builder::macro('should', function ($should) {
             $this->should[] = $should;
 

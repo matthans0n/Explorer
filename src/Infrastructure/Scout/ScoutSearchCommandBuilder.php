@@ -34,6 +34,8 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
 
     private array $aggregations = [];
 
+    private array $postFilters = [];
+
     private string $query = '';
 
     private ?string $index = null;
@@ -56,6 +58,7 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
         $normalizedBuilder = new self();
 
         $normalizedBuilder->setMust($builder->must ?? []);
+        $normalizedBuilder->setPostFilters($builder->postFilters ?? []);
         $normalizedBuilder->setShould($builder->should ?? []);
         $normalizedBuilder->setFilter($builder->filter ?? []);
         $normalizedBuilder->setWhere($builder->where ?? []);
@@ -225,14 +228,24 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
         return $this->aggregations;
     }
 
+    public function setPostFilters(array $postFilters): void
+    {
+        $this->postFilters = $postFilters;
+    }
+
+    public function getPostFilters(): array
+    {
+        return $this->postFilters;
+    }
+
     public function buildQuery(): array
     {
+
         $query = new Query();
         $query->setFields($this->fields);
         $query->setSort($this->sort);
         $query->setLimit($this->limit);
         $query->setOffset($this->offset);
-
         foreach ($this->getAggregations() as $name => $aggregation) {
             $query->addAggregation($name, $aggregation);
         }
@@ -254,6 +267,11 @@ class ScoutSearchCommandBuilder implements SearchCommandInterface
         }
 
         $query->setQuery($compound);
+
+        $postFilterCompound = $this->boolQuery->clone();
+        $postFilterCompound->addMany(QueryType::MUST, $this->getPostFilters());
+
+        $query->setPostFilterQuery($postFilterCompound);
 
         return $query->build();
     }

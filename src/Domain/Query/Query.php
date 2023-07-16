@@ -24,6 +24,8 @@ class Query implements SyntaxInterface
 
     private SyntaxInterface $query;
 
+    private SyntaxInterface $postFilterQuery;
+
     /** @var AggregationSyntaxInterface[] */
     private array $aggregations = [];
 
@@ -68,6 +70,8 @@ class Query implements SyntaxInterface
             );
         }
 
+        $query['post_filter'] = $this->postFilterQuery->build();
+
         return $query;
     }
 
@@ -94,6 +98,11 @@ class Query implements SyntaxInterface
     public function setQuery(SyntaxInterface $query): void
     {
         $this->query = $query;
+    }
+
+    public function setPostFilterQuery(SyntaxInterface $postFilterQuery): void
+    {
+        $this->postFilterQuery = $postFilterQuery;
     }
 
     public function addRescoring(Rescoring $rescoring): void

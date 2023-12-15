@@ -13,7 +13,7 @@ class SearchCommand implements SearchCommandInterface
 
     private ?Query $query;
 
-    public function __construct(?string $index = null, ?Query $query = null)
+    public function __construct(string $index = null, Query $query = null)
     {
         $this->index = $index;
         $this->query = $query;

@@ -191,7 +191,7 @@ class ElasticEngine extends Engine
     {
         $this->deleteIndex($model->searchableAs());
         $this->createIndex($model->searchableAs());
-//        $this->indexAdapter->flush($model->searchableAs());
+        //        $this->indexAdapter->flush($model->searchableAs());
     }
 
     public static function debug(): Debugger

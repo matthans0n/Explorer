@@ -7,7 +7,7 @@ namespace JeroenG\Explorer\Tests\Support\Models;
 use JeroenG\Explorer\Application\BePrepared;
 use JeroenG\Explorer\Application\Explored;
 
-class TestModelWithPrepare implements Explored, BePrepared
+class TestModelWithPrepare implements BePrepared, Explored
 {
     public function getScoutKey(): string
     {

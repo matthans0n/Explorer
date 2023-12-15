@@ -18,7 +18,7 @@ final class DirectIndexConfiguration implements IndexConfigurationInterface
         string $name,
         array $properties,
         array $settings,
-        ?string $model = null,
+        string $model = null,
     ): self {
         return new self(
             name: $name,

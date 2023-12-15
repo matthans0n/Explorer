@@ -20,7 +20,7 @@ final class AliasedIndexConfiguration implements IndexConfigurationInterface
         IndexAliasConfigurationInterface $aliasConfiguration,
         array $properties,
         array $settings,
-        ?string $model = null,
+        string $model = null,
     ): self {
         return new self(
             name: $name,

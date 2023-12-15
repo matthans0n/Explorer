@@ -15,11 +15,11 @@ final class ElasticClientBuilder
     {
         $builder = ClientBuilder::create();
 
-//        $hostConnectionProperties = array_filter(
-//            $config->get('explorer.connection'),
-//            static fn ($key) => in_array($key, self::HOST_KEYS, true),
-//            ARRAY_FILTER_USE_KEY
-//        );
+        //        $hostConnectionProperties = array_filter(
+        //            $config->get('explorer.connection'),
+        //            static fn ($key) => in_array($key, self::HOST_KEYS, true),
+        //            ARRAY_FILTER_USE_KEY
+        //        );
 
         $builder->setHosts(config('explorer.connection.hosts'));
 

@@ -7,7 +7,7 @@ namespace JeroenG\Explorer\Tests\Support\Models;
 use JeroenG\Explorer\Application\Aliased;
 use JeroenG\Explorer\Application\Explored;
 
-class TestModelWithAliased implements Explored, Aliased
+class TestModelWithAliased implements Aliased, Explored
 {
     public function getScoutKey(): string
     {

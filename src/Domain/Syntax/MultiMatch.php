@@ -14,7 +14,7 @@ class MultiMatch implements SyntaxInterface
 
     private $prefix_length;
 
-    public function __construct(string $value, ?array $fields = null, $fuzziness = 'auto', $prefix_length = 0)
+    public function __construct(string $value, array $fields = null, $fuzziness = 'auto', $prefix_length = 0)
     {
         $this->value = $value;
         $this->fields = $fields;
